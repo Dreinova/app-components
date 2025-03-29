@@ -2,6 +2,7 @@
   "expo": {
     "name": "app-components",
     "slug": "app-components",
+    "scheme": "app-components",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -22,7 +23,17 @@
       }
     },
     "web": {
-      "favicon": "./assets/favicon.png"
-    }
+      "favicon": "./assets/favicon.png",
+      "bundler": "metro",
+      "output": "server"
+    },
+    "plugins": [
+      [
+        "expo-router",
+        {
+          "origin": "https://safe-beyond-37009-d1edadf40b4c.herokuapp.com/api/"
+        }
+      ]
+    ]
   }
 }
