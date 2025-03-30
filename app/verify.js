@@ -128,7 +128,7 @@ const OTPVerification = () => {
         <Button
           text="Verify"
           style={{ width: "100%", marginBottom: 12, borderRadius: 14 }}
-          onPress={() => router.push("reset-password")}
+          onPress={() => router.navigate("reset-password")}
         />
         <Button
           text={canResend ? "Send Again" : `Resend in ${timer}s`}

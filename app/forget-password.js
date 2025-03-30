@@ -25,7 +25,12 @@ const ForgetPassword = ({}) => {
     >
       <View style={{ paddingHorizontal: 35 }}>
         <BackButton />
-        <ThemedText type="title">Forget Password</ThemedText>
+        <ThemedText
+          style={{ marginBottom: 10, width: 250, lineHeight: 50 }}
+          type="title"
+        >
+          Forget Password
+        </ThemedText>
         <ThemedText style={{ marginBottom: 43 }}>
           Select which contact details should we use to reset your password
         </ThemedText>
@@ -157,7 +162,7 @@ const ForgetPassword = ({}) => {
           text="Next"
           type="primary"
           style={[styles.button]}
-          onPress={() => router.push("verify")}
+          onPress={() => router.navigate("verify")}
           disabled={!selectedOption}
         />
       </View>

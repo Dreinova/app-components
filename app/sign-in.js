@@ -22,12 +22,12 @@ const SignIn = ({}) => {
 
   const handleLogin = () => {
     console.log("Password:", password); // Aquí puedes enviar la contraseña a tu API
+    router.navigate("(tabs)");
   };
   return (
     <ThemedView
       style={{
         flex: 1,
-
         paddingVertical: 25,
       }}
     >
@@ -62,7 +62,7 @@ const SignIn = ({}) => {
           <Button
             text="Forgot Password?"
             type="tertiary"
-            onPress={() => router.push("forget-password")}
+            onPress={() => router.navigate("forget-password")}
             style={{
               width: "50%",
               opacity: 0.7,
@@ -92,8 +92,8 @@ const SignIn = ({}) => {
           <Button
             text="Sign up"
             type="tertiary"
-            style={{ width: 80 }}
-            onPress={() => router.push("sign-up")}
+            style={{ width: 100 }}
+            onPress={() => router.navigate("sign-up")}
           />
         </View>
       </View>

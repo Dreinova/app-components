@@ -1,5 +1,12 @@
-import React from "react";
-import { Dimensions, ScrollView, StyleSheet, Text, View } from "react-native";
+import React, { useEffect, useState } from "react";
+import {
+  Dimensions,
+  ScrollView,
+  StyleSheet,
+  Text,
+  useColorScheme,
+  View,
+} from "react-native";
 import { ThemedView } from "../components/ThemedView";
 import { ThemedText } from "../components/ThemedText";
 import BackButton from "../components/ui/BackButton";
@@ -7,53 +14,94 @@ import EvilIcons from "@expo/vector-icons/EvilIcons";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import Button from "../components/ui/Button";
 import Animated, { useSharedValue } from "react-native-reanimated";
-
 const intervalWidth = Dimensions.get("screen").width - 80;
-const PlanCard = ({}) => {
+var formatter = new Intl.NumberFormat("es-CO", {
+  style: "currency",
+  currency: "COP",
+  minimumFractionDigits: 0,
+});
+const PlanCard = ({ plans, plan, index }) => {
+  let {
+    attributes: { credits, name, price },
+  } = plan;
+
+  const theme = useColorScheme() ?? "light";
   return (
-    <View style={{ marginLeft: 10 }}>
-      <View
+    <View
+      style={{
+        marginRight: index == plans.length - 1 ? undefined : 10,
+        width: intervalWidth,
+      }}
+    >
+      {index == 0 ? (
+
+      <ThemedView
+      darkColor="#232627"
+      lightColor="#141718"
         style={{
           alignSelf: "center",
-          backgroundColor: "#141718",
           borderRadius: 25,
-          paddingHorizontal: 33,
+          paddingHorizontal: 43,
           paddingVertical: 8,
           marginBottom: -20,
           zIndex: 2,
-          width: intervalWidth,
+          borderWidth:1,
+          borderColor: theme == "light" ? "transparent" : "#4B4B4B"
         }}
       >
-        <Text style={{ color: "#FFF", textAlign: "center", fontSize: 23 }}>
+        <Text style={{ color: "#FFF", textAlign: "center", fontSize: 20 }}>
           Most Popular
         </Text>
-      </View>
-      <View
+      </ThemedView>
+      ) : (<View style={{
+        paddingHorizontal: 43,
+        paddingVertical: 8,
+        marginBottom: -20,
+        height:40
+      }} />)}
+      <ThemedView
+        darkColor="#232627"
+        lightColor="#FFF"
         style={{
-          backgroundColor: "#FFF",
           borderRadius: 10,
           paddingTop: 43,
           paddingBottom: 18,
         }}
       >
-        <Text style={{ color: "#001133", textAlign: "center", fontSize: 32 }}>
-          Monthly
-        </Text>
-        <Text style={{ color: "#001133", textAlign: "center", fontSize: 70 }}>
-          $12
-        </Text>
-      </View>
-      <View
+        <ThemedText
+          darkColor="#FFF"
+          lightColor="#001133"
+          type="defaultSemiBold"
+          style={{
+            textAlign: "center",
+            fontSize: 32,
+            lineHeight: 32,
+            marginBottom: 20,
+          }}
+        >
+          {name}
+        </ThemedText>
+        <ThemedText
+          darkColor="#FFF"
+          lightColor="#001133"
+          style={{ textAlign: "center", fontSize: 50, lineHeight: 50 }}
+        >
+          {formatter.format(price)}
+        </ThemedText>
+      </ThemedView>
+      <ThemedView
+        darkColor="#232627"
+        lightColor="#FFF"
         style={{
-          backgroundColor: "#FFF",
           borderRadius: 10,
           padding: 20,
           gap: 6,
         }}
       >
-        <View
+        <ThemedView
+          darkColor="#141718"
+          lightColor="#F8FaFF"
           style={{
-            backgroundColor: "#F8FAFF",
             flexDirection: "row",
             justifyContent: "space-between",
             alignItems: "center",
@@ -69,11 +117,13 @@ const PlanCard = ({}) => {
             }}
           >
             <EvilIcons name="arrow-right" size={25} color="#0AB161" />
-            <Text
-              style={{ color: "#001133", fontSize: 20, fontWeight: "bold" }}
+            <ThemedText
+              darkColor="#FFF"
+              lightColor="#001133"
+              style={{ fontSize: 20, fontWeight: "bold" }}
             >
               10000 Text
-            </Text>
+            </ThemedText>
           </View>
           <View
             style={{
@@ -87,10 +137,11 @@ const PlanCard = ({}) => {
           >
             <Ionicons name="checkmark" size={20} color="white" />
           </View>
-        </View>
-        <View
+        </ThemedView>
+        <ThemedView
+          darkColor="#141718"
+          lightColor="#F8FaFF"
           style={{
-            backgroundColor: "#F8FAFF",
             flexDirection: "row",
             justifyContent: "space-between",
             alignItems: "center",
@@ -106,11 +157,13 @@ const PlanCard = ({}) => {
             }}
           >
             <EvilIcons name="arrow-right" size={25} color="#0AB161" />
-            <Text
-              style={{ color: "#001133", fontSize: 20, fontWeight: "bold" }}
+            <ThemedText
+              darkColor="#FFF"
+              lightColor="#001133"
+              style={{ fontSize: 20, fontWeight: "bold" }}
             >
-              Next level Ai
-            </Text>
+              {credits} creditos
+            </ThemedText>
           </View>
           <View
             style={{
@@ -124,10 +177,11 @@ const PlanCard = ({}) => {
           >
             <Ionicons name="checkmark" size={20} color="white" />
           </View>
-        </View>
-        <View
+        </ThemedView>
+        <ThemedView
+          darkColor="#141718"
+          lightColor="#F8FaFF"
           style={{
-            backgroundColor: "#F8FAFF",
             flexDirection: "row",
             justifyContent: "space-between",
             alignItems: "center",
@@ -143,11 +197,13 @@ const PlanCard = ({}) => {
             }}
           >
             <EvilIcons name="arrow-right" size={25} color="#0AB161" />
-            <Text
-              style={{ color: "#001133", fontSize: 20, fontWeight: "bold" }}
+            <ThemedText
+              darkColor="#FFF"
+              lightColor="#001133"
+              style={{ fontSize: 20, fontWeight: "bold" }}
             >
-              Secure Your Text
-            </Text>
+              10000 Text
+            </ThemedText>
           </View>
           <View
             style={{
@@ -161,10 +217,11 @@ const PlanCard = ({}) => {
           >
             <Ionicons name="checkmark" size={20} color="white" />
           </View>
-        </View>
-        <View
+        </ThemedView>
+        <ThemedView
+          darkColor="#141718"
+          lightColor="#F8FaFF"
           style={{
-            backgroundColor: "#F8FAFF",
             flexDirection: "row",
             justifyContent: "space-between",
             alignItems: "center",
@@ -180,11 +237,13 @@ const PlanCard = ({}) => {
             }}
           >
             <EvilIcons name="arrow-right" size={25} color="#0AB161" />
-            <Text
-              style={{ color: "#001133", fontSize: 20, fontWeight: "bold" }}
+            <ThemedText
+              darkColor="#FFF"
+              lightColor="#001133"
+              style={{ fontSize: 20, fontWeight: "bold" }}
             >
-              Daily Updates
-            </Text>
+              10000 Text
+            </ThemedText>
           </View>
           <View
             style={{
@@ -198,10 +257,11 @@ const PlanCard = ({}) => {
           >
             <Ionicons name="checkmark" size={20} color="white" />
           </View>
-        </View>
-        <View
+        </ThemedView>
+        <ThemedView
+          darkColor="#141718"
+          lightColor="#F8FaFF"
           style={{
-            backgroundColor: "#F8FAFF",
             flexDirection: "row",
             justifyContent: "space-between",
             alignItems: "center",
@@ -217,11 +277,13 @@ const PlanCard = ({}) => {
             }}
           >
             <EvilIcons name="arrow-right" size={25} color="#0AB161" />
-            <Text
-              style={{ color: "#001133", fontSize: 20, fontWeight: "bold" }}
+            <ThemedText
+              darkColor="#FFF"
+              lightColor="#001133"
+              style={{ fontSize: 20, fontWeight: "bold" }}
             >
-              Unlimeted
-            </Text>
+              10000 Text
+            </ThemedText>
           </View>
           <View
             style={{
@@ -235,18 +297,32 @@ const PlanCard = ({}) => {
           >
             <Ionicons name="checkmark" size={20} color="white" />
           </View>
-        </View>
+        </ThemedView>
+
         <Button
           text="Claim Offer"
-          style={{ borderRadius: 10, marginTop: 20 }}
+          style={{
+            borderRadius: 10,
+            marginTop: 20,
+            backgroundColor: "#141718",
+          }}
         />
-      </View>
+      </ThemedView>
     </View>
   );
 };
 
 const Plans = ({}) => {
   const scrollX = useSharedValue(0);
+  const [plans, setPlans] = useState([]);
+  async function fetchPlans() {
+    const response = await fetch("/api/plans");
+    const plansData = await response.json();
+    setPlans(plansData.data);
+  }
+  useEffect(() => {
+    fetchPlans();
+  }, []);
   return (
     <ScrollView>
       <ThemedView
@@ -279,9 +355,9 @@ const Plans = ({}) => {
             scrollX.value = event.nativeEvent.contentOffset.x;
           }}
         >
-          <PlanCard />
-          <PlanCard />
-          <PlanCard />
+          {plans.map((plan, index) => (
+            <PlanCard key={index} index={index} plan={plan} plans={plans} />
+          ))}
         </Animated.ScrollView>
         <ThemedText
           type="defaultSemiBold"

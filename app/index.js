@@ -50,13 +50,13 @@ const HomeScreen = ({}) => {
           text="Log in"
           type="primary"
           style={{ marginBottom: 22 }}
-          onPress={() => router.push("sign-in")}
+          onPress={() => router.navigate("sign-in")}
         />
         <Button
           text="Sign up"
           type="secondary"
           style={{ marginBottom: 42 }}
-          onPress={() => router.push("sign-up")}
+          onPress={() => router.navigate("sign-up")}
         />
       </View>
       <View

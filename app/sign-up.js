@@ -30,7 +30,6 @@ const SignUp = ({}) => {
       <ThemedView
         style={{
           flex: 1,
-
           paddingVertical: 25,
         }}
       >
@@ -40,7 +39,7 @@ const SignUp = ({}) => {
             lightColor="#141718"
             darkColor="#FFFFFF"
             type="title"
-            style={{ marginBottom: 33, width: 200, lineHeight: 50 }}
+            style={{ marginBottom: 33, width: 250, lineHeight: 50 }}
           >
             Create your Account
           </ThemedText>
@@ -74,7 +73,7 @@ const SignUp = ({}) => {
             <Button
               text="Forgot Password?"
               type="tertiary"
-              onPress={() => router.push("forget-password")}
+              onPress={() => router.navigate("forget-password")}
               style={{
                 width: "50%",
                 opacity: 0.7,
@@ -104,8 +103,8 @@ const SignUp = ({}) => {
             <Button
               text="Sign In"
               type="tertiary"
-              style={{ width: 80 }}
-              onPress={() => router.push("sign-in")}
+              style={{ width: 100 }}
+              onPress={() => router.navigate("sign-in")}
             />
           </View>
         </View>

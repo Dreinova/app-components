@@ -6,7 +6,9 @@ export default function Layout() {
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <GestureHandlerRootView style={{ flex: 1 }}>
-        <Drawer screenOptions={{ headerShown: false }} />
+        <Drawer screenOptions={{ headerShown: false }} >
+        <Drawer.Screen name="(tabs)" options={{ headerShown: false }} />
+        </Drawer>
       </GestureHandlerRootView>
     </SafeAreaView>
   );
