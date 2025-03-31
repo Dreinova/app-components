@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import {
+  Platform,
   StyleSheet,
   Text,
   TouchableOpacity,
@@ -67,7 +68,12 @@ const ForgetPassword = ({}) => {
                 gap: 18,
               },
               selectedOption === "email" && {
-                borderColor: theme == "light" ? "black" : "#FFF",
+                borderColor:
+                  theme === "light"
+                    ? "black"
+                    : Platform.OS === "ios"
+                    ? "#FFF"
+                    : "#aaa", // Color diferente en Android
               },
             ]}
           >
@@ -129,7 +135,12 @@ const ForgetPassword = ({}) => {
                 gap: 18,
               },
               selectedOption === "phone" && {
-                borderColor: theme == "light" ? "black" : "#FFF", // Se aplica borde negro si está seleccionada
+                borderColor:
+                  theme === "light"
+                    ? "black"
+                    : Platform.OS === "ios"
+                    ? "#FFF"
+                    : "#aaa", // Color diferente en Android
               },
             ]}
           >

@@ -12,6 +12,7 @@ import BackButton from "../../../components/ui/BackButton";
 import SimpleLineIcons from "@expo/vector-icons/SimpleLineIcons";
 import { Entypo, FontAwesome, MaterialIcons } from "@expo/vector-icons";
 import Avatar from "../../../components/ui/Avatar";
+import { router } from "expo-router";
 
 const Profile = () => {
   const theme = useColorScheme() ?? "light";
@@ -96,7 +97,7 @@ const Profile = () => {
           </ThemedText>
         </TouchableOpacity>
         <TouchableOpacity
-          onPress={() => router.navigate("settings/invite")}
+          onPress={() => router.navigate("sign-in")}
           style={{
             flexDirection: "row",
             alignItems: "center",

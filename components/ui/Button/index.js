@@ -9,22 +9,25 @@ const Button = ({
   textStyle,
   type = "primary",
   onPress,
+  disabled = false,
   ...props
 }) => {
   const backgroundColor = useThemeColor(
     {
-      light:
-        type === "primary"
-          ? "#000"
-          : type === "secondary"
-          ? "#E5E5EA"
-          : "transparent",
-      dark:
-        type === "primary"
-          ? "#1B1E20"
-          : type === "secondary"
-          ? "#2C2C2E"
-          : "transparent",
+      light: disabled
+        ? "#B0B0B0" // Color para botón deshabilitado en modo claro
+        : type === "primary"
+        ? "#000"
+        : type === "secondary"
+        ? "#E5E5EA"
+        : "transparent",
+      dark: disabled
+        ? "#3A3A3C" // Color para botón deshabilitado en modo oscuro
+        : type === "primary"
+        ? "#1B1E20"
+        : type === "secondary"
+        ? "#2C2C2E"
+        : "transparent",
     },
     "buttonBackground"
   );
@@ -39,9 +42,13 @@ const Button = ({
 
   return (
     <TouchableOpacity
-      props
-      style={[styles.button, { backgroundColor }, style]}
+      style={[
+        styles.button,
+        { backgroundColor, opacity: disabled ? 0.5 : 1 },
+        style,
+      ]}
       onPress={onPress}
+      disabled={disabled}
     >
       <ThemedText
         type="defaultSemiBold"
